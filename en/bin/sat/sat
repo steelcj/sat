@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+
+SAT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+exec python3 "$SAT_ROOT/en/bin/sat/sat-init.py" "$@"

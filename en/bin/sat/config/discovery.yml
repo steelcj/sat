@@ -1,0 +1,4 @@
+discovery:
+  sat_tools: true
+  archive_tools: false
+  content_tools: false
