@@ -2,4 +2,12 @@
 set -e
 
 SAT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+
+# archive init
+if [ "$1" = "archive" ] && [ "$2" = "init" ]; then
+  shift 2
+  exec python3 "$SAT_ROOT/en/bin/sat/sat-archive-init.py" "$@"
+fi
+
+# default
 exec python3 "$SAT_ROOT/en/bin/sat/sat-init.py" "$@"

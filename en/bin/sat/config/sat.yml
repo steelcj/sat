@@ -1,3 +1,8 @@
+---
+# en/bin/sat/config/sat.yml
 sat:
   version: "mvp"
   language: "en"
+archives:
+  root: "archives"
+

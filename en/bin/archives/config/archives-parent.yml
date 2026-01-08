@@ -1,0 +1,4 @@
+---
+# bin/archives/config/parent.yml
+archives:
+  root: "archives"

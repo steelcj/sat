@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+
+ARCHIVE_ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+if [ "$1" = "init" ]; then
+  shift
+  exec python3 "$ARCHIVE_ROOT/archive-init.py" "$@"
+fi
+
+echo "usage: archive <command>"
+exit 1

@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+import sys
+import yaml
+from pathlib import Path
+
+def create_tree(base: Path, tree):
+    if isinstance(tree, dict):
+        for name, subtree in tree.items():
+            p = base / name
+            p.mkdir(parents=True, exist_ok=True)
+            create_tree(p, subtree)
+    elif isinstance(tree, list):
+        for name in tree:
+            (base / name).mkdir(parents=True, exist_ok=True)
+
+def main():
+    if len(sys.argv) not in (2, 3):
+        print("usage: archive init <archive.yml> [parent.yml]")
+        sys.exit(1)
+
+    spec_path = Path(sys.argv[1]).resolve()
+    parent_override = Path(sys.argv[2]).resolve() if len(sys.argv) == 3 else None
+
+    with spec_path.open() as f:
+        spec = yaml.safe_load(f)
+
+    archive_name = spec.get("archive")
+    if not isinstance(archive_name, str):
+        print("error: 'archive' must be a string in archive.yml")
+        sys.exit(1)
+
+    # tool root: <project-root>/bin/archives
+    tool_root = Path(__file__).resolve().parent
+
+    # project root: <project-root>
+    project_root = tool_root.parent.parent
+
+    # load parent.yml (override if provided)
+    parent_cfg = parent_override if parent_override else (tool_root / "config" / "parent.yml")
+    if not parent_cfg.exists():
+        print(f"error: missing parent config: {parent_cfg}")
+        sys.exit(1)
+
+    with parent_cfg.open() as f:
+        parent = yaml.safe_load(f)
+
+    archives_root_name = parent.get("archives", {}).get("root")
+    if not isinstance(archives_root_name, str):
+        print("error: invalid archives.root in parent.yml")
+        sys.exit(1)
+
+    archives_root = project_root / archives_root_name
+
+    docs_root = archives_root / archive_name / "en" / "docs"
+    docs_root.mkdir(parents=True, exist_ok=True)
+
+    create_tree(docs_root, spec.get("tree", {}))
+
+if __name__ == "__main__":
+    main()
