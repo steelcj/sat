@@ -3,13 +3,46 @@
 en.zip
 en/docs.zip
 
-# Python
-.venv/
-__pycache__/
-*.pyc
-.pytest_cache/
-
 # Local editor / tool state
 .claude/*
 .claude/settings.local.json
 .claude/settings.local.json.tmp.*
+CLAUDE.md
+
+
+# SAT repository .gitignore
+# Curated, not templated: unanchored patterns are avoided because this
+# repository stores content trees, and content may legitimately contain
+# directories named build/, lib/, var/, instance/, and so on.
+
+# --- SAT-specific -----------------------------------------------------
+
+en/bin/lint/
+
+# --- Python bytecode ---------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.pytest_cache/
+
+# --- Virtual environments (development state, never committed) ----------
+.venv/
+.venvs/
+
+# --- Packaging and build output, scoped to library project roots --------
+en/lib/*/build/
+en/lib/*/dist/
+en/lib/*/*.egg-info/
+
+# --- Test, lint, and type-check caches ----------------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# --- Local environment files ---------------------------------------------
+.env
+.envrc
