@@ -1,7 +1,8 @@
 # Snapshot archives of the tracked tree itself — redundant now that git holds history.
 # Remove these lines if the zips are meant to be versioned deliverables.
-en.zip
-en/docs.zip
+
+# dist 
+dist/*
 
 # Local editor / tool state
 .claude/*

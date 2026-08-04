@@ -1,0 +1,34 @@
+# SAT Capabilities Showcase: instantiation preseed (demo values)
+#
+# Purpose:
+#   Prewires the answers `sat init` would otherwise stop to ask, so the
+#   creation beat of the demo runs without interruption. Copy this to
+#   ~/.config/sat/instantiate-preseed.yml before the demo, review the
+#   values, and remove it afterward.
+#
+#   cp demo-preseed.yml ~/.config/sat/instantiate-preseed.yml
+#
+# Reference:
+#   Keys are read once, at creation, and never again (see the SAT
+#   Initialization Guide, "Using an instantiation preseed"). Every key is
+#   optional. Command-line arguments override this file, which overrides
+#   tool self-discovery.
+#
+# Note on identity:
+#   dc:creator, dc:publisher, and dc:rights are copied into records that
+#   ship with every instance created. These are deliberately generic demo
+#   values. Do not substitute real personal identity here and then sync or
+#   publish the file: this is operator identity, not configuration trivia.
+
+languages:
+  - en
+
+dc:creator: "SAT Demo Presenter"
+dc:publisher: "SAT Demo Presenter"
+dc:rights: "https://creativecommons.org/licenses/by-sa/4.0/"
+
+collections_home: collections
+
+seed:
+  documentation: true
+  sample_content: true
