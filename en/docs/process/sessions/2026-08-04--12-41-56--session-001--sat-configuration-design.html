@@ -1,0 +1,543 @@
+<title>SAT Configuration Design — Reconciled at ADR-034</title>
+
+<style>
+  :root {
+    --paper:      #f4f5f7;
+    --surface:    #ffffff;
+    --ink:        #16192b;
+    --slate:      #5b6478;
+    --verdigris:  #2f6f66;
+    --amber:      #8f6216;
+    --rule:       #dcdfe6;
+    --floor-bg:   #eef3f2;
+
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --measure: 68ch;
+    --step: clamp(1rem, 0.4rem + 1.2vw, 1.5rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:     #101320;
+      --surface:   #171b29;
+      --ink:       #dfe3ec;
+      --slate:     #949db3;
+      --verdigris: #5aa79b;
+      --amber:     #cb9a4c;
+      --rule:      #2a3044;
+      --floor-bg:  #16241f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #101320;
+    --surface:   #171b29;
+    --ink:       #dfe3ec;
+    --slate:     #949db3;
+    --verdigris: #5aa79b;
+    --amber:     #cb9a4c;
+    --rule:      #2a3044;
+    --floor-bg:  #16241f;
+  }
+  :root[data-theme="light"] {
+    --paper:     #f4f5f7;
+    --surface:   #ffffff;
+    --ink:       #16192b;
+    --slate:     #5b6478;
+    --verdigris: #2f6f66;
+    --amber:     #8f6216;
+    --rule:      #dcdfe6;
+    --floor-bg:  #eef3f2;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: calc(var(--step) * 2) var(--step) calc(var(--step) * 4);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--step) * 2.5);
+  }
+
+  /* ---- masthead ---- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding-bottom: calc(var(--step) * 1.5);
+    border-bottom: 3px double var(--rule);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.1rem, 1.2rem + 3.4vw, 3.4rem);
+    line-height: 1.1;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .standfirst {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.3rem);
+    line-height: 1.5;
+    color: var(--slate);
+    max-width: var(--measure);
+    text-wrap: pretty;
+  }
+  .status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--slate);
+    padding-top: 0.4rem;
+  }
+  .status b { color: var(--ink); font-weight: 600; }
+
+  /* ---- sections ---- */
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .sechead {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .adrtag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    white-space: nowrap;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+  p { margin: 0; max-width: var(--measure); text-wrap: pretty; }
+  .prose { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: color-mix(in srgb, var(--verdigris) 10%, transparent);
+    padding: 0.1em 0.34em;
+    border-radius: 2px;
+    word-break: break-word;
+  }
+
+  /* ---- the rule callout ---- */
+
+  .rulepair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .rulepair > div {
+    background: var(--surface);
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .rulepair .k {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .rulepair .v { font-family: var(--mono); font-size: 0.9rem; line-height: 1.5; }
+  .rulepair p { font-size: 0.9rem; color: var(--slate); }
+
+  /* ---- code blocks ---- */
+
+  .block {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--verdigris);
+    overflow-x: auto;
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    padding: 1.2rem 1.3rem;
+    margin: 0;
+    min-width: max-content;
+  }
+  pre .c { color: var(--slate); }
+  pre .r { color: var(--amber); }
+  .caption {
+    font-size: 0.85rem;
+    color: var(--slate);
+    max-width: var(--measure);
+  }
+
+  /* ---- resolution ladder ---- */
+
+  .ladder {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--rule);
+    overflow-x: auto;
+  }
+  .rung {
+    display: grid;
+    grid-template-columns: 3.4rem minmax(20rem, 1fr) minmax(12rem, 1.1fr);
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface);
+    min-width: 40rem;
+  }
+  .rung:last-child { border-bottom: 0; }
+  .rung.floor { background: var(--floor-bg); }
+  .rung .id {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: var(--verdigris);
+  }
+  .rung.op .id { color: var(--ink); }
+  .rung .path { font-family: var(--mono); font-size: 0.78rem; word-break: break-all; }
+  .rung .note { font-size: 0.8rem; color: var(--slate); }
+  .laddergap { height: 0.5rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
+
+  /* ---- decisions ---- */
+
+  .decisions { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .decision {
+    background: var(--surface);
+    padding: 1.3rem;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.4rem 1rem;
+    align-items: start;
+  }
+  .decision .n {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--verdigris);
+    grid-row: span 2;
+  }
+  .decision p { font-size: 0.92rem; color: var(--slate); }
+
+  .withdrawn { display: flex; flex-direction: column; gap: 0.7rem; }
+  .withdrawn li {
+    list-style: none;
+    padding-left: 1.6rem;
+    position: relative;
+    font-size: 0.92rem;
+    max-width: var(--measure);
+  }
+  .withdrawn li::before {
+    content: "\00d7";
+    position: absolute;
+    left: 0.35rem;
+    top: -0.05rem;
+    color: var(--amber);
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  .withdrawn b { font-weight: 650; }
+
+  /* ---- tables ---- */
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--rule); }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; background: var(--surface); }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    font-size: 0.87rem;
+  }
+  th {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--slate);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: 0; }
+  td.term { font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; }
+  td.adr { font-family: var(--mono); font-size: 0.75rem; color: var(--verdigris); white-space: nowrap; }
+  td.tid { font-family: var(--mono); font-size: 0.78rem; font-weight: 700; color: var(--amber); }
+
+  footer {
+    border-top: 3px double var(--rule);
+    padding-top: 1.2rem;
+    font-size: 0.82rem;
+    color: var(--slate);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: var(--measure);
+  }
+
+  @media (max-width: 34rem) {
+    body { font-size: 16px; }
+    .decision { grid-template-columns: 1fr; }
+    .decision .n { grid-row: auto; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Source Archive Tools &middot; configuration mapping</div>
+    <h1>The filesystem is the declaration</h1>
+    <p class="standfirst">SAT's configuration layout, reconciled against the ADR corpus. There is no manifest and no registry: every path below is resolved by reading the tree, and the mapping itself is a report you can regenerate, never a file you maintain.</p>
+    <div class="status">
+      <span><b>ADR-034</b> Proposed</span>
+      <span><b>2026-08-04</b></span>
+      <span>corpus ceiling <b>034</b></span>
+      <span>docs-only pass <b>T1&ndash;T8 complete</b></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sechead">
+      <h2>One carrier, two placements</h2>
+      <span class="adrtag">ADR-018</span>
+    </div>
+    <div class="prose">
+      <p>Every entity has exactly one assets directory, and its name is a literal transform of the entity's own name &mdash; <code>.&lt;name&gt;.assets</code>. The transform is injective and reversible, so the name is always a fact you can grep, never one you compute. Where it sits depends on what it describes.</p>
+    </div>
+    <div class="rulepair">
+      <div>
+        <span class="k">A directory &rarr; inside</span>
+        <span class="v">test-collection/<br>&nbsp;&nbsp;.test-collection.assets/</span>
+        <p>The assets directory lives within the directory it describes, so it moves with its subtree.</p>
+      </div>
+      <div>
+        <span class="k">A file &rarr; beside</span>
+        <span class="v">guide.md<br>.guide.md.assets/</span>
+        <p>A file cannot contain anything, so its assets sit next to it &mdash; and its media sit <em>inside</em> those assets.</p>
+      </div>
+    </div>
+    <p class="caption">A generic <code>.sat.assets</code> beside every node was rejected: the name belongs to the entity, so <code>.sat.assets</code> is correct only where the entity is literally named <code>sat</code>. Anything matching <code>.*.assets</code> is metadata space, excluded from content enumeration.</p>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <h2>The layout</h2>
+      <span class="adrtag">ADR-018 &middot; 025 &middot; 032</span>
+    </div>
+    <p class="caption">Abridged from the target layout &mdash; the instance root, the shipped floor, and one collection with an independent <code>en</code> archive. The full document also carries a mirrored <code>fr</code> archive with the same shape.</p>
+    <div class="block">
+<pre>sat/                                     <span class="c"># instance root — dual-role (sat + collection)</span>
+├── .sat.assets/                         <span class="c"># inside it; entity is literally named "sat"</span>
+│   ├── sat/                             <span class="c"># sat-scope records — flat set (ADR-025 §2)</span>
+│   │   ├── identity.yml
+│   │   ├── provenance.yml
+│   │   ├── dc.yml                       <span class="c"># canonical metadata — literally dc.yml</span>
+│   │   ├── children.yml
+│   │   └── <span class="r">resources/</span>                   <span class="c"># reserved parent (ADR-025 §5)</span>
+│   └── collection/                      <span class="c"># second role on the same root</span>
+│       ├── identity.yml
+│       ├── provenance.yml
+│       ├── dc.yml
+│       ├── collection.yml
+│       ├── work-index.yml
+│       └── children.yml
+├── bin/
+│   └── sat/
+│       └── defaults/                    <span class="c"># shipped floor (ADR-032 §1) — never delegated</span>
+│           ├── sat/metadata/dc.yml
+│           ├── collection/metadata/dc.yml
+│           ├── archive/metadata/dc.yml
+│           └── content/
+│               ├── metadata/dc.yml
+│               └── markdown.yml         <span class="c"># single-file concern stays flat (§5)</span>
+└── collections/
+    └── test-collection/
+        ├── .test-collection.assets/     <span class="c"># per-entity name — inside the directory</span>
+        │   └── collection/…
+        └── en/                          <span class="c"># language archive — independent</span>
+            ├── .en.assets/
+            │   └── archive/
+            │       ├── identity.yml
+            │       ├── provenance.yml
+            │       ├── dc.yml
+            │       ├── language.yml     <span class="c"># relationship: independent</span>
+            │       └── children.yml
+            └── docs/                    <span class="c"># content lives here</span>
+                ├── .docs.assets/
+                │   └── content/…        <span class="c"># records for docs/ itself</span>
+                ├── index.md
+                ├── .index.md.assets/    <span class="c"># the file's assets — beside it</span>
+                │   └── content/
+                │       ├── identity.yml
+                │       ├── provenance.yml
+                │       ├── dc.yml       <span class="c"># seeded by cataloging, operator-owned</span>
+                │       └── fixity.yml   <span class="c"># recorded digest (ADR-027)</span>
+                ├── guide.md
+                └── .guide.md.assets/
+                    ├── content/…
+                    └── hero.png         <span class="c"># media inside the file's assets —</span>
+                                         <span class="c">#   never a dot-file sibling (§3–4)</span></pre>
+    </div>
+    <p class="caption"><strong>Not today.</strong> Each <code>dc.yml</code> above sits flat and stays flat while it is the only metadata file in operator space. When a second one becomes real, the role directory earns a <code>metadata/</code> concern parent and <code>dc.yml</code> relocates in the same migration &mdash; one decision already made.</p>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <h2>Nine layers, read at read-time</h2>
+      <span class="adrtag">ADR-025 §7, amended by ADR-032 §2</span>
+    </div>
+    <p>Each tier's shipped floor is read immediately before that tier's operator layer, so SAT's opinion is always the thing an operator overrides &mdash; never the thing that overrides them. Deepest stated value wins; nothing is cached.</p>
+    <div class="ladder">
+      <div class="rung floor"><span class="id">0a</span><span class="path">bin/sat/defaults/sat/metadata/dc.yml</span><span class="note">SAT's shipped opinion</span></div>
+      <div class="rung op"><span class="id">1</span><span class="path">.sat.assets/sat/dc.yml</span><span class="note">operator's instance override</span></div>
+      <div class="laddergap"></div>
+      <div class="rung floor"><span class="id">0b</span><span class="path">bin/sat/defaults/collection/metadata/dc.yml</span><span class="note">SAT's shipped opinion</span></div>
+      <div class="rung op"><span class="id">2</span><span class="path">.&lt;name&gt;.assets/collection/dc.yml</span><span class="note">operator's override</span></div>
+      <div class="laddergap"></div>
+      <div class="rung floor"><span class="id">0c</span><span class="path">bin/sat/defaults/archive/metadata/dc.yml</span><span class="note">SAT's shipped opinion</span></div>
+      <div class="rung op"><span class="id">3</span><span class="path">.&lt;lang&gt;.assets/archive/dc.yml</span><span class="note">override; language.yml injects the language fields</span></div>
+      <div class="laddergap"></div>
+      <div class="rung floor"><span class="id">0d</span><span class="path">bin/sat/defaults/content/metadata/dc.yml</span><span class="note">SAT's shipped opinion</span></div>
+      <div class="rung op"><span class="id">4</span><span class="path">.&lt;dir&gt;.assets/content/dc.yml</span><span class="note">per content directory on the path, outermost first</span></div>
+      <div class="laddergap"></div>
+      <div class="rung op"><span class="id">5</span><span class="path">.&lt;file&gt;.assets/content/dc.yml</span><span class="note">the document's own record</span></div>
+    </div>
+    <p class="caption">The stagger is by tier, not by depth. Preseeds are not a layer here: they are creation-time seeds resolved into the instance record, not something read on every resolution.</p>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <h2>What ADR-034 decided</h2>
+      <span class="adrtag">Proposed &middot; v0.1.0</span>
+    </div>
+    <div class="decisions">
+      <div class="decision">
+        <span class="n">1</span>
+        <h3>Concern parents are earned, not preemptive</h3>
+        <p>A role directory gains a <code>metadata/</code> parent only when a second metadata file actually lands &mdash; then <code>dc.yml</code> relocates into it in the same change. With <code>resources/</code>, that makes exactly two reserved words. The skip rule stays two words long instead of becoming a list that grows.</p>
+      </div>
+      <div class="decision">
+        <span class="n">2</span>
+        <h3>The vocabulary swap runs through the floor, not through filenames</h3>
+        <p><code>dc.yml</code> stays <code>dc.yml</code>; a future vocabulary lands as <code>mods.yml</code> beside it, and a shipped-floor value states which is canonical. Both records can coexist during a transition, which a renamed single file cannot do &mdash; and every filename stays greppable rather than computed.</p>
+      </div>
+      <div class="decision">
+        <span class="n">3</span>
+        <h3>The mapping is projected, never declared</h3>
+        <p><code>sat config map</code> renders the effective mapping on demand: every record, its role directory, its floor file, and the walk that resolves it. It is derived and disposable &mdash; regenerated, never cached, never authoritative. A projection that is never stored can never drift.</p>
+      </div>
+    </div>
+
+    <h3>Withdrawn against the corpus</h3>
+    <ul class="withdrawn">
+      <li><b>Five lifecycle families at the role root.</b> This is the flat-concern-directories shape ADR-025 already rejected, with more members &mdash; five reserved words where the doctrine earns them one at a time, and a migration cost with no resolver payoff.</li>
+      <li><b>An authoritative, versioned mapping manifest.</b> A declaration that can disagree with the filesystem is ADR-025's rejected marker file at full scale. The layout's version is the ADR corpus itself.</li>
+      <li><b>Interpolated canonical filenames.</b> Computed names make the tree's most-read record un-greppable and break the additive transition, buying nothing the floor value does not already provide.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <h2>Vocabulary</h2>
+      <span class="adrtag">governing ADR per term</span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Term</th><th>Means</th><th>ADR</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="term">assets directory</td><td>The per-entity carrier <code>.&lt;name&gt;.assets</code> &mdash; inside a directory, beside a file. The primary carrier for everything in-tree.</td><td class="adr">018</td></tr>
+          <tr><td class="term">role directory</td><td>A role-named directory inside the assets directory, holding that role's flat record set. Simultaneously the declaration, the container, and the permission boundary.</td><td class="adr">025 §1&ndash;2</td></tr>
+          <tr><td class="term">dual-role directory</td><td>One directory bearing two roles &mdash; an instance that is also a collection. Each role carries its own identity, so extraction is a pure move.</td><td class="adr">025 §1&ndash;2</td></tr>
+          <tr><td class="term">sparse inheritance</td><td>Records state only what they change; unstated values resolve from the layer above.</td><td class="adr">025</td></tr>
+          <tr><td class="term">concern parent</td><td>A reserved word inside a role directory &mdash; <code>resources/</code>, and <code>metadata/</code> once earned. Reserved so concern names cannot collide with record names.</td><td class="adr">025 §5 &middot; 034</td></tr>
+          <tr><td class="term">policy record</td><td>An operator record carrying enforced or overridable settings; tightening is permitted downward, loosening is not.</td><td class="adr">025 §6</td></tr>
+          <tr><td class="term">shipped defaults floor</td><td>SAT's own opinion at <code>bin/sat/defaults/&lt;tier&gt;/</code>, below the whole operator cascade and never delegated.</td><td class="adr">032 §1</td></tr>
+          <tr><td class="term">sidecar</td><td><em>Narrowed:</em> a metadata file emitted into pipeline output by egress &mdash; the three types <code>dc.yml</code>, <code>og.yml</code>, <code>schema.yml</code>. Not an in-tree carrier.</td><td class="adr">032 &middot; 034</td></tr>
+          <tr><td class="term">derived class</td><td>Regenerated on demand, never authoritative, never cached: <code>children.yml</code>, <code>work-index.yml</code>, and now <code>sat config map</code>.</td><td class="adr">022 §5 &middot; 034</td></tr>
+          <tr><td class="term">canonical metadata</td><td>The vocabulary a record is written in &mdash; <code>dc:</code> for MVP, <code>dcterms:</code> deferred, exceptions explicit. Stated by a floor value, not by a filename.</td><td class="adr">028 &middot; 032 §5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption"><em>Co-located</em> and <em>nested</em> are retired as topology terms, along with <em>twinned</em> and <em>detached</em>. Where an older draft uses them, read them as the assets directory with its inside/beside placement.</p>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <h2>Reconciliation ledger</h2>
+      <span class="adrtag">docs-only pass &middot; 2026-08-04</span>
+    </div>
+    <p>The design corpus predates the ADRs it now cites. This pass minted ADR-034 and brought each document into agreement with it &mdash; one commit per task.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Task</th><th>Document</th><th>Change</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="tid">T1</td><td class="term">adr-034-&hellip;-v0-1-0.md</td><td>Minted into the corpus under the versioned filename convention.</td></tr>
+          <tr><td class="tid">T2</td><td class="term">&hellip;-mapping-recommendation.md</td><td>Superseded banner; body retained as the historical record ADR-034 cites.</td></tr>
+          <tr><td class="tid">T3</td><td class="term">&hellip;-definitions-and-vocabulary.md</td><td>Carrier section rebuilt; retired terms quarantined; house terms adopted; filename interpolation removed.</td></tr>
+          <tr><td class="tid">T4</td><td class="term">&hellip;-payload-maps-&hellip;.md</td><td>Twinned framing replaced; the detached projection re-scoped to the derived class.</td></tr>
+          <tr><td class="tid">T5</td><td class="term">&hellip;-target-layout.md</td><td>Per-entity names, flat record set, shipped floor and the nine-layer walk.</td></tr>
+          <tr><td class="tid">T6</td><td class="term">three current-state docs</td><td>Naming, media placement, narrowed sidecar, full cascade, ADR citations &mdash; plus one substantive fix: preseeds are creation-time, not a read-time layer.</td></tr>
+          <tr><td class="tid">T7</td><td class="term">&hellip;-goals.md</td><td>Cross-references only; no structural change.</td></tr>
+          <tr><td class="tid">T8</td><td class="term">verification</td><td>Greps clean; all ADR links resolve; supersession banners added to four prior artifacts.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>Every path on this page is illustrative in its entity names and decided in its conventions. Where this page and the ADR corpus disagree, the corpus wins &mdash; that is the rule the reconciliation was run under.</p>
+    <p>SAT (Source Archive Tools) &middot; Copyright &copy; 2026 Christopher Steel &middot; documentation licensed CC BY-SA 4.0, SAT itself under the GNU AGPL v3 or later.</p>
+  </footer>
+
+</div>

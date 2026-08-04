@@ -1,0 +1,29 @@
+---
+archive_name: chrissteel.com
+
+parent_directory: ~/projects/sites/prod
+
+archive_root: chrissteel.com/mkdocs/docs
+
+language:
+  code: en
+  relationship: independent
+
+tree:
+
+  index.md: file
+
+  areas:
+    index.md: file
+
+  projects:
+    index.md: file
+
+  resources:
+    index.md: file
+
+  archives:
+    index.md: file
+
+  about:
+    index.md: file

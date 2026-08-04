@@ -1,0 +1,16 @@
+---
+archive_name: operations-guides-en
+parent_directory: ~/projects/docs
+archive_root: en/docs
+
+language:
+  code: en
+  relationship: independent
+
+tree:
+  index.md: null
+
+  guides:
+    index.md: null
+    email:
+      gmail-account-setup-for-form-submission.md: null

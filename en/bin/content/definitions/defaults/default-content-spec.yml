@@ -1,0 +1,117 @@
+# default-content-spec.yml
+#
+# Content transformation spec for content-egress.py.
+# Controls how the Markdown body is cleaned and normalized on egress.
+#
+# This file is self-documenting — every available option is listed with
+# its default value and available choices. Edit values here to change
+# egress behaviour without touching any code.
+#
+# Front matter options are handled separately at the transmog layer,
+# since front matter requirements are platform-specific.
+
+# ---------------------------------------------------------------------------
+# Front matter
+# ---------------------------------------------------------------------------
+
+# Strip front matter from the output document.
+# Egress always rewrites front matter from the .dc.yml sidecar, so the
+# source front matter is never passed through.
+# options: true, false
+strip_front_matter: true
+
+# ---------------------------------------------------------------------------
+# Horizontal rules
+# ---------------------------------------------------------------------------
+
+# Remove horizontal rules from the document body.
+# Covers all Markdown HR variants: ---, ***, ___
+# Does not affect the front matter delimiters (---).
+# options: true, false
+strip_hr: true
+
+# ---------------------------------------------------------------------------
+# Headings
+# ---------------------------------------------------------------------------
+
+# Enforce strict heading hierarchy — no skipping levels (e.g. H1 → H3).
+# warn  : report violations but do not modify the document
+# strict: correct violations by adjusting heading levels
+# off   : no enforcement
+# options: strict, warn, off
+heading_hierarchy: strict
+
+# Heading style.
+# atx   : prefix style  →  ## Heading
+# setext: underline style (H1 and H2 only, not recommended for new documents)
+# options: atx, setext
+heading_style: atx
+
+# Strip inline markup from heading text.
+# Removes bold (**text**) and italic (*text* / _text_) from headings.
+# Inline code and links in headings are left as-is.
+# options: true, false
+clean_heading_markup: true
+
+# ---------------------------------------------------------------------------
+# Emoji
+# ---------------------------------------------------------------------------
+
+# Strip emoji characters from the document body.
+# options: true, false
+strip_emoji: true
+
+# ---------------------------------------------------------------------------
+# Lists
+# ---------------------------------------------------------------------------
+
+# Unordered list marker style.
+# options: dash, asterisk, plus
+list_marker: dash
+
+# ---------------------------------------------------------------------------
+# Code blocks
+# ---------------------------------------------------------------------------
+
+# Fenced code block delimiter style.
+# options: backtick, tilde
+code_fence_style: backtick
+
+# Minimum fence length (number of delimiter characters).
+# options: 3, 4
+code_fence_min_length: 3
+
+# ---------------------------------------------------------------------------
+# Links
+# ---------------------------------------------------------------------------
+
+# Link style.
+# inline   : [text](url)
+# reference: [text][ref] with references collected at end of document
+# options: inline, reference
+link_style: inline
+
+# ---------------------------------------------------------------------------
+# Tables
+# ---------------------------------------------------------------------------
+
+# Normalize table column widths (pad cells for alignment).
+# options: true, false
+normalize_tables: true
+
+# ---------------------------------------------------------------------------
+# Whitespace and line handling
+# ---------------------------------------------------------------------------
+
+# Line ending style.
+# options: lf, crlf
+line_endings: lf
+
+# Strip trailing whitespace from all lines.
+# options: true, false
+trim_trailing_whitespace: true
+
+# Maximum line length for body text. Set to 0 to disable wrapping.
+# Code blocks and tables are never wrapped regardless of this setting.
+# options: 0 (disabled) or a positive integer (e.g. 80, 100, 120)
+max_line_length: 0

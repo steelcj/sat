@@ -1,0 +1,36 @@
+---
+# en/bin/archive/config/archive.yml
+archive: finance
+tree:
+  areas:
+    income:
+      - employment
+      - freelance
+      - benefits
+    banking:
+      - chequing
+      - savings
+      - credit-cards
+    expenses:
+      - housing
+      - utilities
+      - food
+      - transportation
+      - subscriptions
+    taxes:
+      - annual
+      - correspondence
+      - notices
+    insurance:
+      - health
+      - home
+      - auto
+      - life
+    investments:
+      registered:
+        - rrsp
+        - tfsa
+      non-registered: {}
+    retirement: {}
+    estate: {}
+

@@ -1,0 +1,47 @@
+# en/bin/sat/defaults/content/markdown.yml
+#
+# SAT's shipped opinion on "well-formed SAT markdown," per ADR-030
+# (mechanism, pipeline placement) and ADR-032 (this file's location
+# and cascade mechanism). Read at read time by satlib.markdown's
+# check_house_rules(), same as every other shipped-floor layer — no
+# caching, no runtime state.
+#
+# Each key is a toggle. An operator who disagrees with a rule
+# overrides it at whatever tier they own (.assets/<role>/markdown.yml,
+# sparse, deepest-stated-value wins, ADR-025 §7) — this file is only
+# the floor, not a lock.
+
+no_horizontal_rules: true
+# No `---`/`***`/`___` rule lines outside frontmatter delimiters.
+# ADR-030 decision 4; mdformat radar entry,
+# markdown--no-horizontal-rules-v0-3-1.md.
+
+fenced_blocks_require_language: true
+# Every ``` fence must carry a language identifier. ADR-030 decision 4;
+# mdformat radar entry.
+
+no_heading_level_skips: true
+# Sequential heading levels only — no H1 straight to H3. ADR-030
+# decision 4; ported from content-egress.py's normalize_heading_hierarchy
+# (prior art credited in the ADR-023 amendment).
+
+no_hard_line_wraps: true
+# Don't hard-wrap prose at a fixed column; let it flow. Gap found
+# 2026-07-31: this is an adopted automa entry
+# (markdown--no-hard-line-wraps-v0-1-0.md) that ADR-030's original
+# three-rule table omitted. mdformat does not catch this on its own —
+# it only preserves manually placed line breaks, it does not reflow —
+# so this is a real check, not redundant with mdformat's canonical pass.
+
+no_embedded_image_data: true
+# No `data:image/...;base64,` URIs, any format, no exception. Bloats
+# the source, breaks diffs, and is filesystem-invisible — against the
+# "filesystem-visible, no runtime state" principle (sat-mvp-roadmap.md).
+# Proposed 2026-07-31, undrafted until this file.
+
+inline_svg_allowed: true
+# Separate from no_embedded_image_data on purpose: literal <svg>...</svg>
+# markup is still plain text, still diffable, and doesn't have the
+# base64 bloat/opacity problem. A base64-encoded SVG data URI is still
+# banned by no_embedded_image_data above — this toggle only concerns
+# inline <svg> tags, not SVG-as-data-URI.

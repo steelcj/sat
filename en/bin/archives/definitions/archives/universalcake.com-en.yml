@@ -1,0 +1,29 @@
+---
+archive_name: universalcake.com
+parent_directory: ~/projects/sat/prod/sat
+archive_root: archives/universalcake.com
+base_url: http://universalcake.com:443
+
+language:
+  code: en
+  relationship:
+    - mirror
+
+tree:
+
+  index.md: file
+
+  areas:
+    index.md: file
+
+  projects:
+    index.md: file
+
+  resources:
+    index.md: file
+
+  archives:
+    index.md: file
+
+  about:
+    index.md: file

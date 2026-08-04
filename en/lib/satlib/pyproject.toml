@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "satlib"
+version = "0.1.0"
+description = "Shared library for Source Archive Tools (SAT)"
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0", "mdformat>=0.7"]
+# Markdown normalization at content ingress (ADR-030). Optional by design:
+# its absence is a fatal, narrated error with an install command, never a
+# silent skip, so it is declared here rather than as a hard runtime dep.
+markdown = ["mdformat>=0.7"]
+
+[tool.setuptools.packages.find]
+include = ["satlib*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

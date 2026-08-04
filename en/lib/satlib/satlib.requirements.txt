@@ -1,0 +1,3 @@
+# satlib runtime: install the package and select the extras the tools need.
+# Versions live in pyproject.toml; this line only chooses the package + extras.
+./en/lib/satlib[markdown]

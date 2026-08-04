@@ -1,0 +1,30 @@
+# github-frontmatter-spec.yml
+#
+# Front matter spec for GitHub publication target.
+#
+# GitHub renders YAML front matter as a table in the document view,
+# which is almost never the desired outcome for documentation.
+# All front matter sections are disabled for this target.
+#
+# Metadata is preserved in the .dc.yml sidecar alongside the document
+# and remains available for other tools — it is simply not embedded
+# in the document front matter for GitHub rendering.
+
+platform: github
+description: "No front matter — GitHub renders YAML front matter as a table"
+warn_on_missing: false
+
+general:
+  enabled: false
+
+dc:
+  enabled: false
+
+og:
+  enabled: false
+
+schema:
+  enabled: false
+
+robots:
+  enabled: false

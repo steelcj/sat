@@ -1,0 +1,13 @@
+# en/bin/sat/definitions/defaults/sat.yml
+---
+sat:
+  name: "Source Archive Tools"
+  version: "0.1.0"
+  language: "en"
+  license: "GPL-3.0-or-later"
+
+tools:
+  sat: true
+  archives: true
+  content: true
+  transmog: false

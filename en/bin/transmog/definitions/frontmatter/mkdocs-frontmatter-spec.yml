@@ -1,0 +1,47 @@
+# mkdocs-frontmatter-spec.yml
+#
+# Front matter spec for MkDocs publication target.
+#
+# MkDocs reads a small set of fields from front matter:
+#   title    — overrides the page title in nav and browser tab
+#   description — used in search and meta tags
+#   tags     — used by the tags plugin (requires tags plugin enabled)
+#
+# All other sections are disabled — MkDocs ignores them and they
+# add unnecessary noise to the source files.
+
+platform: mkdocs
+description: "Front matter for MkDocs publication — minimal, tool-specific fields only"
+warn_on_missing: true
+
+general:
+  enabled: false
+
+dc:
+  enabled: false
+
+og:
+  enabled: false
+
+schema:
+  enabled: true
+  output: sidecar
+
+robots:
+  enabled: false
+
+# ---------------------------------------------------------------------------
+# MkDocs-specific fields
+# Derived from dc sidecar.
+# ---------------------------------------------------------------------------
+
+mkdocs:
+  enabled: true
+
+  fields:
+    title: true        # dc:title
+    description: true  # dc:description
+    tags: true         # dc:subject
+
+  required:
+    - title

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# en/bin/collection/collection
+# SAT Tools collection tier dispatcher.
+# SAT Tools: https://github.com/steelcj/sat-tools
+
+set -e
+
+SAT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+PYTHON="$SAT_ROOT/.venv/bin/python3"
+
+# collection init
+if [ "$1" = "init" ]; then
+  shift
+  exec "$PYTHON" "$SAT_ROOT/en/bin/collection/collection-init.py" "$@"
+fi
+
+# collection work
+if [ "$1" = "work" ]; then
+  shift
+  exec "$PYTHON" "$SAT_ROOT/en/bin/collection/collection-work.py" "$@"
+fi
+
+# default
+exec "$PYTHON" "$SAT_ROOT/en/bin/collection/collection-init.py" --help

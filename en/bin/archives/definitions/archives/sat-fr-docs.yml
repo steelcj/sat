@@ -1,0 +1,30 @@
+---
+# definitions/archives/sat-fr-docs.yml
+archive_name: sat-docs-fr
+parent_directory: ~/projects/sat/prod/sat
+archive_root: fr/docs
+
+language:
+  code: fr
+  relationship: independent
+
+tree:
+  index.md: null
+
+  architecture:
+    index.md: null
+
+  artefacts:
+    index.md: null
+
+  commandes:
+    index.md: null
+
+  guides:
+    index.md: null
+
+  references:
+    index.md: null
+
+  specifications:
+    index.md: null

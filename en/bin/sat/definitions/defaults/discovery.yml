@@ -1,0 +1,22 @@
+# en/bin/sat/definitions/defaults/discovery.yml
+---
+# Defines how this SAT instance discovers its root and components.
+# The presence of this file at en/bin/sat/definitions/defaults/discovery.yml
+# is used by SAT tools to locate the SAT root at runtime.
+
+discovery:
+  marker: "en/bin/sat/definitions/defaults/discovery.yml"
+
+  tools:
+    sat: true
+    archives: true
+    content: true
+    transmog: false
+
+  definitions:
+    sat: "en/bin/sat/definitions"
+    archives: "en/bin/archives/definitions"
+    content: "en/bin/content/definitions"
+    transmog: "en/bin/transmog/definitions"
+
+  nursery: "nursery"

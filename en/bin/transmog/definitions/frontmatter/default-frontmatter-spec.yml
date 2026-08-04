@@ -1,0 +1,147 @@
+# default-frontmatter-spec.yml
+#
+# Reference template for platform-specific front matter specs.
+# This file is not used directly by any tool — it is the documented
+# starting point when adding a new platform target.
+#
+# To add a new platform:
+#   1. Copy this file to <platform>-frontmatter-spec.yml
+#   2. Set platform and description
+#   3. Enable/disable sections and fields as needed
+#
+# Derivation source: all field values are read from the .dc.yml sidecar.
+# The dc sidecar is the canonical record — nothing is passed through
+# from the source document's original front matter.
+#
+# Required fields: if a required field is absent from the .dc.yml sidecar,
+# the egress tool will warn and continue. Set warn_on_missing: false to
+# suppress warnings for optional platforms.
+
+# --- Identity ---
+
+platform: default
+description: "Reference template — copy and adapt for each platform target"
+
+# Warn if a required field is missing from the .dc.yml sidecar.
+# options: true, false
+warn_on_missing: true
+
+# ---------------------------------------------------------------------------
+# General section
+# Human-readable fields derived from dc sidecar.
+# Included in the output document's front matter when enabled.
+# ---------------------------------------------------------------------------
+
+general:
+  enabled: true
+
+  fields:
+    # options: true, false
+    Title: true            # dc:title
+    Description: true      # dc:description
+    Author: true           # dc:creator
+    Contributor: true      # dc:contributor
+    Publisher: true        # dc:publisher
+    Date: true             # dc:date
+    Last_Modified_Date: true  # dc:modified
+    License: true          # dc:rights
+    Tags: true             # dc:subject
+    Keywords: true         # dc:keywords
+    Language: true         # dc:language
+    Identifier: true       # dc:identifier
+    Source: true           # dc:source
+    Relation: true         # dc:relation
+    Coverage: true         # dc:coverage
+    Format: true           # dc:format
+    Type: true             # dc:type
+
+  # Required subset — warn if these are missing from the sidecar.
+  required:
+    - Title
+    - Author
+    - Date
+    - License
+    - Language
+    - Identifier
+    - Format
+    - Type
+
+# ---------------------------------------------------------------------------
+# Dublin Core section
+# dc: prefixed fields written directly to front matter.
+# ---------------------------------------------------------------------------
+
+dc:
+  enabled: true
+
+  fields:
+    dc:title: true
+    dc:creator: true
+    dc:contributor: true
+    dc:publisher: true
+    dc:description: true
+    dc:subject: true
+    dc:keywords: true
+    dc:date: true
+    dc:modified: true
+    dc:language: true
+    dc:type: true
+    dc:format: true
+    dc:identifier: true
+    dc:source: true
+    dc:relation: true
+    dc:coverage: true
+    dc:rights: true
+    dc:rights.uri: true
+    dc:rights.holder: true
+
+  required:
+    - dc:title
+    - dc:creator
+    - dc:date
+    - dc:rights
+    - dc:language
+    - dc:identifier
+    - dc:format
+    - dc:type
+
+# ---------------------------------------------------------------------------
+# Open Graph section
+# Derived from dc sidecar via the dc → OG mapping.
+# ---------------------------------------------------------------------------
+
+og:
+  enabled: true
+
+  fields:
+    og:title: true          # dc:title
+    og:description: true    # dc:description
+    og:type: true           # dc:type → mapped
+    og:url: true            # dc:identifier
+    og:locale: true         # dc:language → mapped
+    og:article:
+      published_time: true  # dc:date
+      modified_time: true   # dc:modified
+      author: true          # dc:creator
+      tag: true             # dc:subject
+
+# ---------------------------------------------------------------------------
+# Schema.org section
+# Written as a .schema.yml sidecar, not embedded in front matter.
+# Derived from dc sidecar via the dc → Schema.org mapping.
+# ---------------------------------------------------------------------------
+
+schema:
+  enabled: true
+  # Schema.org output is always written as a sidecar (.schema.yml).
+  # It is never embedded in the document front matter.
+  output: sidecar
+
+# ---------------------------------------------------------------------------
+# Robots / SEO
+# ---------------------------------------------------------------------------
+
+robots:
+  enabled: true
+  # options: any string valid for the robots meta tag
+  default: "index, follow"

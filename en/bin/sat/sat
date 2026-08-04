@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# en/bin/sat/sat
+# SAT Tools sat tier dispatcher.
+# SAT Tools: https://github.com/steelcj/sat-tools
+
+set -e
+
+SAT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+PYTHON="$SAT_ROOT/.venv/bin/python3"
+
+# sat init
+if [ "$1" = "init" ]; then
+  shift
+  exec "$PYTHON" "$SAT_ROOT/en/bin/sat/sat-init.py" "$@"
+fi
+
+# archive init
+if [ "$1" = "archive" ] && [ "$2" = "init" ]; then
+  shift 2
+  exec "$PYTHON" "$SAT_ROOT/en/bin/sat/sat-archive-init.py" "$@"
+fi
+
+# licence check
+if [ "$1" = "licence" ] && [ "$2" = "check" ]; then
+  shift 2
+  exec "$PYTHON" "$SAT_ROOT/en/bin/sat/sat-licence-check.py" "$@"
+fi
+
+# default
+exec "$PYTHON" "$SAT_ROOT/en/bin/sat/sat-init.py" "$@"

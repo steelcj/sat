@@ -1,0 +1,11 @@
+# SAT Tools runtime dependency ledger.
+#
+# Applied by the installer (pip install -r requirements.txt) and the single
+# surface legal/DEPENDENCIES.md is generated from. Composition only: each
+# component declares its own third-party deps in a co-located, subject-first
+# <component>.requirements.txt, referenced here.
+-r en/lib/satlib/satlib.requirements.txt
+
+# Extend by dropping a component's co-located file and uncommenting its line:
+# -r en/bin/content/content.requirements.txt
+# -r plugins/hugo-transmog/hugo-transmog.requirements.txt

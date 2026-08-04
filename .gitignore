@@ -1,0 +1,15 @@
+# Snapshot archives of the tracked tree itself — redundant now that git holds history.
+# Remove these lines if the zips are meant to be versioned deliverables.
+en.zip
+en/docs.zip
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local editor / tool state
+.claude/*
+.claude/settings.local.json
+.claude/settings.local.json.tmp.*

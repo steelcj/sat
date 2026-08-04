@@ -1,0 +1,16 @@
+# en/bin/sat/examples/collection-preseed.yml.example
+# Example collection preseed example used by sat init.
+# Copy to ~/.config/sat/collection/collection-preseed.yml and customise,
+# or run collection init to generate it interactively.
+# SAT Tools: https://github.com/steelcj/sat-tools
+collections:
+  default_parent: ~/projects/sat
+  chrissteel.com:
+    archives:
+      en-ca:
+      fr-ca:
+  universalcake.com:
+    parent: ~/clients/universalcake
+    archives:
+      en-ca:
+      fr-ca:

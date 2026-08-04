@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: satlib
+Version: 0.1.0
+Summary: Shared library for Source Archive Tools (SAT)
+Requires-Python: >=3.10
+Requires-Dist: PyYAML>=6.0
+Provides-Extra: test
+Requires-Dist: pytest>=8.0; extra == "test"
+Requires-Dist: mdformat>=0.7; extra == "test"
+Provides-Extra: markdown
+Requires-Dist: mdformat>=0.7; extra == "markdown"

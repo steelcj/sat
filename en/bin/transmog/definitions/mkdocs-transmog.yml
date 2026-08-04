@@ -1,0 +1,41 @@
+# mkdocs-transmog.yml
+#
+# Transmog definition for MkDocs document preparation.
+#
+# This definition describes a single transmog target — where prepared content
+# comes from, which platform it targets, and where the output goes.
+#
+# The pipeline behaviour is driven entirely by the front matter spec.
+# transmog.py reads the spec, sees what is enabled, and executes accordingly.
+#
+# Usage:
+#   python3 en/bin/transmog/transmog.py --definition <this file> --source <egress dir>
+
+# --- Identity ---
+
+name: sat-docs-mkdocs
+description: "Prepare SAT documentation for MkDocs publication"
+platform: mkdocs
+
+# --- Front matter spec ---
+# Path is relative to this definition file.
+
+frontmatter_spec: frontmatter/mkdocs-frontmatter-spec.yml
+
+# --- Source ---
+# The egress output directory — contains clean .md files and .dc.yml sidecars.
+# Can be overridden at runtime with --source.
+
+source: ""
+
+# --- Output ---
+# Where prepared documents are written.
+# Can be overridden at runtime with --output.
+
+output: ""
+
+# --- Metadata ---
+
+dc:creator: "Christopher Steel"
+dc:date: "2026-03-28"
+dc:rights: "CC BY-SA 4.0"

@@ -1,0 +1,32 @@
+# html-frontmatter-spec.yml
+#
+# Front matter spec for HTML publication target.
+#
+# For HTML output, front matter is not embedded in the document body.
+# Instead, OG and Schema.org metadata are injected into the <head>
+# element by the transmog tool. The dc sidecar and .og.yml / .schema.yml
+# sidecars are the sources for that injection.
+#
+# Front matter in the Markdown source is stripped before HTML conversion.
+
+platform: html
+description: "No front matter in document — OG and Schema.org injected into HTML head"
+warn_on_missing: true
+
+general:
+  enabled: false
+
+dc:
+  enabled: false
+
+og:
+  enabled: true
+  output: head    # injected into <head> by transmog, not written to front matter
+
+schema:
+  enabled: true
+  output: sidecar  # .schema.yml sidecar — injected into <head> as JSON-LD by transmog
+
+robots:
+  enabled: true
+  default: "index, follow"

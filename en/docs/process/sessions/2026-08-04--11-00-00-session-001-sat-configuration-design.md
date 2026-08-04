@@ -1,0 +1,11 @@
+Almost nothing — the repo now contains everything I'd need: the ADR corpus, `satlib` (the reference implementations), the design corpus, and the audited draft. What's missing are three decisions that are yours, not mine, plus one practical item: the deliverables from this session that exist only in this chat (the ADR-034 draft and any reconciled docs) need to land in the project — either you save them in, or a local Claude Code session recreates them from a handoff file I write.
+
+The decisions:No — nothing else is required. Both files are above:
+
+**`adr-034-operator-side-concern-parents-and-the-derived-mapping-projection-v0-1-0.md`** — the final ADR, header set to `status: Proposed`, draft framing removed, filename following your corpus convention. Save it anywhere in `sat-mapping` (the handoff's first task places it into `docs/architecture/adrs/`).
+
+**`sat-mapping-make-it-so-handoff.md`** — the executable plan. Drop it in the project root, open Claude Code there, and say "execute sat-mapping-make-it-so-handoff.md." It's self-contained: an inputs check, the ground-truth ADRs to read first, eight tasks (T1 mint ADR-034 → T2 supersede the pre-corpus recommendation → T3–T7 reconcile each design doc with the specific edits enumerated per file → T8 a grep-based verification pass), plus commit conventions (one commit per task, `docs:` prefix) and the standing rule that the ADR corpus wins over any design doc on conflict.
+
+The only judgment calls left for the local session are small and the handoff constrains them: exact wording of the superseded banner and the changelog lines. Everything else — which terms retire (*co-located*, *nested*), what "sidecar" narrows to, per-entity assets naming, media placement, the nine-layer cascade description — is pinned to specific ADR sections so the reconciliation is mechanical rather than interpretive.
+
+One practical note: since the docs-zip snapshot I worked from may lag your working tree, the handoff instructs the local session to re-read the five ground-truth ADRs from disk before editing — so if any of them have moved past the versions I audited (018 v0.1.1, 025 v0.2.1, 028 v0.1.0, 032 v0.1.1), the local pass will catch it rather than propagate stale citations.

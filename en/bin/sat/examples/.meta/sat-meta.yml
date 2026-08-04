@@ -1,0 +1,52 @@
+# en/bin/sat/examples/.meta/sat-meta.yml
+# SAT-level metadata defaults.
+# Processed and copied by sat init to ~/.config/sat/.meta/sat-meta.yml.
+# Owned by SAT operator after installation.
+# SAT Tools: https://github.com/steelcj/sat-tools
+#
+# These values cascade downward through the collection, archive, and content
+# tiers. Each tier may override individual fields in its own *-meta.yml.
+# Values are resolved at archive or content creation and written to the DC
+# sidecar (.dc.yml). Once written, sidecar values are immutable by default.
+#
+# dc: prefix follows the Dublin Core Metadata Element Set (DCMES) Version 1.1
+# http://purl.org/dc/elements/1.1/
+#
+# <calculated> fields are resolved by sat init at copy time:
+#   dc:language_bcp47  — derived from filesystem language root (ADR-003, ADR-005)
+#   dc:language        — derived from dc:language_bcp47 via BCP 47 to ISO 639-2 lookup
+#
+# dc:rights uses the Creative Commons license URI per DCMI best practice.
+#
+# dc:contributor carries the form "Name (Organization)" per SAT local
+# convention for representing agents as plain strings.
+
+# --- Agent ---
+
+dc:creator: "Christopher Steel"
+dc:contributor: "Claude Sonnet 4.6 (Anthropic)"
+dc:publisher: "Christopher Steel"
+
+# --- Rights ---
+
+dc:rights: "https://creativecommons.org/licenses/by-sa/4.0/"   # CC BY-SA 4.0
+
+# --- Language ---
+# <calculated> by sat init from the filesystem language root.
+# dc:language_bcp47: full BCP 47 tag — SAT local extension
+# dc:language: ISO 639-2 three-letter code — derived via lookup table
+
+dc:language: "<calculated>"
+dc:language_bcp47: "<calculated>"
+
+# --- Format ---
+# MIME type per RFC 7763.
+
+dc:format: "text/markdown"
+
+# --- Type ---
+# From DCMI Type Vocabulary.
+# Collection and archive tiers use "Collection".
+# Content tier uses "Text" for markdown files.
+
+dc:type: "Collection"

@@ -1,0 +1,56 @@
+# pdf-frontmatter-spec.yml
+#
+# Front matter spec for PDF publication target.
+#
+# Front matter is stripped from the document before PDF conversion.
+# Title, author, date, and rights are passed to the PDF renderer
+# separately to populate the document title page and PDF metadata
+# (XMP / document properties).
+#
+# The dc sidecar is the source for all PDF metadata fields.
+
+platform: pdf
+description: "No front matter in document — dc sidecar fields passed to PDF renderer for title page and XMP metadata"
+warn_on_missing: true
+
+general:
+  enabled: false
+
+dc:
+  enabled: false
+
+og:
+  enabled: false
+
+schema:
+  enabled: false
+
+robots:
+  enabled: false
+
+# ---------------------------------------------------------------------------
+# PDF-specific metadata
+# Passed to the PDF renderer (not written to document front matter).
+# Derived from dc sidecar.
+# ---------------------------------------------------------------------------
+
+pdf:
+  enabled: true
+
+  # Fields passed to the PDF renderer for title page and XMP document properties.
+  fields:
+    title: true        # dc:title
+    author: true       # dc:creator
+    contributor: true  # dc:contributor
+    date: true         # dc:date
+    rights: true       # dc:rights
+    language: true     # dc:language
+    subject: true      # dc:subject
+    keywords: true     # dc:keywords
+    identifier: true   # dc:identifier
+
+  required:
+    - title
+    - author
+    - date
+    - rights

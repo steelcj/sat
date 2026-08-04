@@ -1,0 +1,38 @@
+---
+archive_name: sat-docs-en
+parent_directory: ~/projects/sat/prod/sat
+archive_root: /
+base_url: http://localhost:8080
+
+language:
+  code: en
+  relationship: independent
+
+content_profile: commonmark
+
+tree:
+  index.md: null
+
+  architecture:
+    index.md: null
+
+  artifacts:
+    index.md: null
+
+  commands:
+    index.md: null
+
+  guides:
+    index.md: null
+
+  radar:
+    adopt: {}
+    assess: {}
+    hold: {}
+    trial: {}
+
+  references:
+    toolchain: {}
+
+  specifications:
+    index.md: null
