@@ -1,6 +1,6 @@
 ---
 dc:title: "SAT Capabilities Showcase: Demo Runbook"
-dcterms:version: "0.1.0"
+dcterms:version: "0.1.1"
 dc:creator: "Christopher Steel"
 dc:contributor: "Claude Opus 4.8 (Anthropic)"
 dc:description: "A timed fifteen-minute presenter script for a mixed decision-maker audience, covering the beats, the exact commands, the talking points, and the reset steps for demonstrating the SAT lifecycle from an empty directory to a published, integrity-checked archive."
@@ -17,6 +17,10 @@ dc:rights: >
 sat:uuid: ""
 sat:version_at_creation: "0.8.0"
 sat:changelog:
+  - version: "0.1.1"
+    date: "2026-08-04"
+    author: "Christopher Steel"
+    notes: "Captured real command outputs through the ingress beat; added the metadata-cascade section (parent-layer inheritance, per-document override, and the <calculated> tripwire) and a section on placing content into a collection's nested language archive with the collection-tier cascade contrast, all verified live against a scratch instance created with the installed 0.8.0 tool."
   - version: "0.1.0"
     date: "2026-08-04"
     author: "Christopher Steel"
@@ -25,7 +29,7 @@ sat:changelog:
 
 # SAT Capabilities Showcase: Demo Runbook
 
-Version: 0.1.0
+Version: 0.1.1
 Status: Draft
 Style Guide: style-guide--versioned-documents-in-unrendered-markdown
 
@@ -412,6 +416,120 @@ registry_file_date: null
 
 Let that sit. This is the moment the value is obvious even to someone who will never touch a terminal.
 
+# AUTHOR STOPPED REVIEW HERE
+
+## Beat three deepened, steer the metadata through the cascade
+
+The records you just saw were not typed by hand, and they were not read from the file. The document arrived with no frontmatter, `frontmatter_present: false` in its ingress record, yet its `dc.yml` came out with a creator, a publisher, a date, a licence, and a language. Those values resolved down what SAT calls the metadata cascade, and the cascade is where you steer a document's description without touching the document body. For a fifteen-minute run, show one of the three adjustments below; for a longer session, show all three.
+
+### How the cascade resolves
+
+SAT resolves a document's metadata through ordered layers, shallow to deep, and the deepest concrete value wins (ADR-025):
+
+| Tier | Layer | Where you set it |
+| --- | --- | --- |
+| 1 | Instance | the sat role's `dc.yml` at the instance root |
+| 2 | Collection | the owning collection's `dc.yml` |
+| 3 | Archive | the language archive's `dc.yml`, with its `language.yml` |
+| 4 | Content directories | any organizing directory's `dc.yml` below the archive |
+| 5 | The document | the document's own `content/dc.yml`, beside the file |
+
+Three field states travel through those layers, and this is worth saying out loud to the room:
+
+- A concrete value resolves, and a deeper layer can override it.
+- An empty string is a real, deliberate value that wins like any other.
+- `<calculated>` is a hole, a deliberate tripwire. It never wins over a concrete value, and if it is still a hole after every layer, SAT refuses rather than guesses.
+
+One field is exempt on purpose. `dc:description` is never inherited, because a description describes one thing, not its descendants. That is why the ingressed document showed `dc:description: ''`. The cascade will fill a licence for you; it will never invent a description.
+
+### Adjustment one, change a default once, and every document below follows
+
+Suppose the licence for everything in this instance should change. Set it in one place, the instance layer, then ingress a fresh document that says nothing of its own:
+
+```bash
+$EDITOR .demo-instance.assets/sat/dc.yml     # set dc:rights to CC BY 4.0
+printf 'A second note\n\nNo metadata of its own.\n' > ../second-note.md
+content ingress ../second-note.md --to en
+```
+
+The new document inherits the new default, without being told:
+
+```bash
+grep dc:rights en/.second-note.md.assets/content/dc.yml
+```
+
+```text
+dc:rights: https://creativecommons.org/licenses/by/4.0/
+```
+
+Say this:
+
+"I changed the licence in one place, at the top, and every document that does not say otherwise now resolves to it. That is policy by inheritance, not a find and replace across ten thousand files."
+
+### Adjustment two, let a single document speak for itself
+
+A document overrides any inherited value by carrying its own. Ingress one that states its licence in frontmatter:
+
+```bash
+cat > ../own-rights.md <<'EOF'
+---
+dc:title: "Locally Licensed Note"
+dc:rights: "https://creativecommons.org/publicdomain/zero/1.0/"
+---
+
+This one carries its own rights.
+EOF
+content ingress ../own-rights.md --to en
+```
+
+Its own licence wins over the instance default, and the ingress record marks where each value came from:
+
+```bash
+grep -E 'dc:rights|dc:title' en/.own-rights.md.assets/content/dc.yml
+```
+
+```text
+dc:title: Locally Licensed Note
+dc:rights: https://creativecommons.org/publicdomain/zero/1.0/
+```
+
+```text
+origins:
+  dc:title: transcribed
+  dc:rights: transcribed
+  dc:creator: supplied
+```
+
+Say this:
+
+"The deepest layer wins, so a document can always speak for itself. And SAT records the provenance of every field, transcribed from the document or supplied by the cascade. You can always answer where a value came from."
+
+Because ingress freezes the resolved record into the document's own `dc.yml`, and fixity guards the identity, provenance, and content but not the metadata record, you can also adjust one document after the fact by editing its `dc.yml` directly. That is the right place, and the only place, to give a document the description the cascade will not infer for you.
+
+### Adjustment three, the tripwire that refuses to guess
+
+This is the governance point that lands hardest. Make the instance licence a hole, then try to ingress a document that states no licence of its own:
+
+```bash
+$EDITOR .demo-instance.assets/sat/dc.yml     # set dc:rights to <calculated>
+printf 'A third note with no rights anywhere.\n' > ../third-note.md
+content ingress ../third-note.md --to en
+```
+
+```text
+[CONTENT ERROR] cascade tripwire: dc:rights: still <calculated> after cascade resolution — a tooling error, not a fallback
+```
+
+Nothing was written; there is no `en/.third-note.md.assets` to find. Say this:
+
+"A required field had no answer at any layer. SAT did not invent one, and it did not quietly leave it blank. It stopped, named the field, and wrote nothing. A system that fills holes silently is a system you cannot trust. This one refuses."
+
+Restore the instance licence before you move on:
+
+```bash
+$EDITOR .demo-instance.assets/sat/dc.yml     # restore dc:rights to a real value
+```
+
 ## Beat four, collect, three minutes
 
 Group related material into a collection:
@@ -425,6 +543,41 @@ Say this:
 "A single document is a start. Real archives are sets: a report and its appendices, a series, a project's whole output. A collection is how SAT holds related items together as one governed thing, with its own identity and its own record of what belongs."
 
 If you ingressed more than one sample, this is where you show them landing together.
+
+### Placing content inside a collection, and the collection tier of the cascade
+
+Content does not only land in the top-level archive. A collection has its own language archive, and `--to` takes a directory path, not just an archive tag, so a document can go anywhere beneath it. The intermediate directories need not exist: SAT creates them and mints the content role on each directory on the way down. Give `--to` the directory only; the file keeps its own name.
+
+```bash
+content ingress ../messy-source-sample.md --to collections/test-collection/en/docs/my-directory
+```
+
+```text
+CATALOGED: .../collections/test-collection/en/docs/my-directory/messy-source-sample.md
+```
+
+Here is the point worth making, and it is the cascade again. A document inside a collection resolves the collection's own metadata (Tier 2), which a top-level document never sees. Set a licence on the collection, then ingress one document into the collection and one into the top-level archive:
+
+```bash
+$EDITOR collections/test-collection/.test-collection.assets/collection/dc.yml   # set dc:rights to CC BY-NC 4.0
+content ingress ../messy-source-sample.md --to collections/test-collection/en/docs/my-directory
+printf 'A top-level note.\n' > ../toplevel-note.md
+content ingress ../toplevel-note.md --to en
+```
+
+The two documents, in the same instance, resolve different licences, decided entirely by where they live:
+
+```text
+# collections/test-collection/en/docs/my-directory/.messy-source-sample.md.assets/content/dc.yml
+dc:rights: https://creativecommons.org/licenses/by-nc/4.0/
+
+# en/.toplevel-note.md.assets/content/dc.yml
+dc:rights: https://creativecommons.org/licenses/by-sa/4.0/
+```
+
+Say this:
+
+"Same instance, two documents, two different licences, and nobody set the licence on either document. Where a document lives decides what it inherits. That is how you govern a whole set of related material by describing the set once, at the collection, instead of every file by hand."
 
 ## Beat five, prove integrity, two minutes, second peak
 
@@ -497,12 +650,13 @@ Have a screen recording of a clean run ready as a silent fallback. A recorded su
 
 ## Command verification status
 
-The initialize, verify, and teardown commands are taken from the SAT Initialization Guide, which records them as executed against a scratch instance on 2026-08-04. The ingress, collection, and fixity command shapes are taken from the tool sources (`content-ingress.py`, `collection-init.py`, `collection-reconcile.py`, `collection-fixity.py`) on 2026-08-04. The publish step names the transmog vector but does not pin a subcommand, because the exact form was not executed for this document; confirm it with `transmog --help` and update this runbook in place once verified for the demo environment.
+The initialize, verify, and teardown commands are taken from the SAT Initialization Guide, which records them as executed against a scratch instance on 2026-08-04. The ingress, collection, and fixity command shapes are taken from the tool sources (`content-ingress.py`, `collection-init.py`, `collection-reconcile.py`, `collection-fixity.py`) on 2026-08-04. The publish step names the transmog vector but does not pin a subcommand, because the exact form was not executed for this document; confirm it with `transmog --help` and update this runbook in place once verified for the demo environment. The metadata-cascade section was executed live on 2026-08-04 against a scratch instance created with the installed 0.8.0 tool; the inheritance, override, and tripwire outputs shown there are captured from that run.
 
 ## Changelog
 
 | Version | Status | Notes |
 | --- | --- | --- |
+| 0.1.1 | Draft | Captured real command outputs through the ingress beat; added the metadata-cascade section (inheritance, per-document override, and the `<calculated>` tripwire) and a section on placing content into a collection's nested language archive with the collection-tier contrast, verified live against a scratch 0.8.0 instance. |
 | 0.1.0 | Draft | First version. Fifteen-minute arc, beats, talking points, and reset for a mixed audience; commands sourced from tool code and the Initialization Guide, with the publish step flagged for live confirmation. |
 
 ## License

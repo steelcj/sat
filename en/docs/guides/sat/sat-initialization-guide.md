@@ -47,11 +47,24 @@ SAT_ROOT=`pwd`
 echo $SAT_ROOT
 python3 -m venv ${SAT_ROOT}/.venv/bin/sat --prompt "sat"
 source .venv/bin/sat/bin/activate
-source ~/.venvs/ansible/7.0.0/bin/activate
 pip install -r ./en/lib/satlib/satlib.requirements.txt
 which pip
 sat --version
 ```
+
+#### venv confirmation
+
+```bash
+content
+```
+
+expected output
+
+```bash
+usage: content <init|ingress> [options]
+```
+
+### Ensure for python
 
 The `sat` dispatcher requires a Python virtual environment at the repository root, not inside `en/`. Check that it exists:
 
