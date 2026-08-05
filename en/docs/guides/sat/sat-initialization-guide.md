@@ -47,7 +47,7 @@ SAT_ROOT=`pwd`
 echo $SAT_ROOT
 python3 -m venv ${SAT_ROOT}/.venv/bin/sat --prompt "sat"
 source .venv/bin/sat/bin/activate
-pip install -r ./en/lib/satlib/satlib.requirements.txt
+pip install -e ./en/lib/satlib/[test,markdown]
 which pip
 sat --version
 ```

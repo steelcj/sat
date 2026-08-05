@@ -17,11 +17,11 @@ dc:rights: >
 sat:uuid: ""
 sat:version_at_creation: "0.8.0"
 sat:changelog:
-  - version: "0.1.1"
+  - version: "0.1.2"
     date: "2026-08-04"
     author: "Christopher Steel"
     notes: "Captured real command outputs through the ingress beat; added the metadata-cascade section (parent-layer inheritance, per-document override, and the <calculated> tripwire) and a section on placing content into a collection's nested language archive with the collection-tier cascade contrast, all verified live against a scratch instance created with the installed 0.8.0 tool."
-  - version: "0.1.0"
+  - version: "0.1.2"
     date: "2026-08-04"
     author: "Christopher Steel"
     notes: "First version. Beats and talking points authored for a mixed decision-maker audience; commands taken from the tool sources and the SAT Initialization Guide, with a verification-status section flagging the steps to confirm live."
@@ -195,48 +195,106 @@ Then introduce the governing idea in one breath:
 
 > automa: standing rules the tools apply automatically, every time, to everyone, human or machine. That is the difference between a policy and a guarantee."
 
+### Create instance
 
+```bash
+tree
+.
+├── demo-instance
+│   ├── collections
+│   │   └── test-collection
+│   │       ├── en
+│   │       │   └── sample.md
+│   │       └── staging
+│   │           ├── bienvenue.md
+│   │           ├── note-de-service.md
+│   │           └── welcome.md
+│   └── en
+│       └── docs
+│           └── getting-started.md
+└── messy-source-sample.md
+
+```
 
 ## Beat three, ingress, four minutes, first peak
 
 This is the heart of the demo. Preview the ingress so the room sees intent before effect:
 
-Lets move into our demo instance:
+Show our messy example document
 
 ```bash
-cd demo-instance
+ls -al 
 ```
+
+output:
+
+```bash
+drwxrwxr-x  3 initial initial  4096 Aug  4 22:33 .
+drwxrwxrwt 31 root    root    32768 Aug  4 22:30 ..
+drwxrwxr-x  5 initial initial  4096 Aug  4 22:33 demo-instance
+-rw-rw-r--  1 initial initial  1426 Aug  4 22:29 messy-source-sample.md
+```
+
+
 
 Now lets ingress our messy document:
 
 ```bash
-content ingress ../messy-source-sample.md --to en --dry-run
+# ingress to sat instance: demo-instance/en
+content ingress messy-source-sample.md --to demo-instance/en/my-directory --dry-run
+
+# ingress to test collection: demo-instance/collections/test-collection/en
+content ingress messy-source-sample.md --to demo-instance/collections/test-collection/en --dry-run
 ```
 
-Output example:
+Output example:  Ingress to a the SAT instances archive
 
 ```bash
-PLAN: promote /tmp/sat-demo/messy-source-sample.md -> en/messy-source-sample.md, then catalog
+PLAN: promote /tmp/sat-demo/messy-source-sample.md -> demo-instance/en/messy-source-sample.md, then catalog
+No changes were made (--dry-run).
+```
+
+Output example: Ingress to English archive in an archive collection
+
+```bash
+PLAN: promote /tmp/sat-demo/messy-source-sample.md -> demo-instance/collections/test-collection/en/messy-source-sample.md, then catalog
 No changes were made (--dry-run).
 ```
 
 Then perform it:
 
 ```bash
-content ingress ../messy-source-sample.md --to en
+content ingress messy-source-sample.md --to demo-instance/en/my-directory
 ```
 
 Output
 
 ```bash
-CATALOGED: /tmp/sat-demo/demo-instance/en/messy-source-sample.md
+CATALOGED: /tmp/sat-demo/demo-instance/en/my-directory/messy-source-sample.md
 ```
+
+Lets take a peek at our file 
+
+```bash
+typora /tmp/sat-demo/demo-instance/en/my-directory/messy-source-sample.md
+```
+
+
 
 ### Automa cascade
 
 That simple command above hides a lot of details of exactly what happens with a document is ingressed.
 
 A process of normalization takes place its generated records side by side. Walk through what appeared without anyone typing it:
+
+Set our sidecar file path
+
+```bash
+SIDECAR_PATH=/tmp/sat-demo/demo-instance/en/my-directory/.messy-source-sample.md.assets
+echo ${SIDECAR_PATH}
+```
+
+
 
 #### metadata
 
@@ -245,7 +303,7 @@ Our SAT is configured to use Dublin Core Metadata, lets take a look at it:
 ##### dublin core
 
 ```bash
-cat en/.messy-source-sample.md.assets/content/dc.yml
+cat ${SIDECAR_PATH}/content/dc.yml
 ```
 
 ##### dublin core output example just after ingress:
@@ -266,7 +324,7 @@ dc:type: Collection
 #### fixity
 
 ```bash
-cat en/.messy-source-sample.md.assets/content/fixity.yml
+cat ${SIDECAR_PATH}/content/fixity.yml
 ```
 
 Output example:
@@ -297,7 +355,7 @@ recorded_by:
 #### an identity
 
 ```bash
-cat en/.messy-source-sample.md.assets/content/identity.yml
+cat ${SIDECAR_PATH}/content/identity.yml
 ```
 
 output example:
@@ -312,7 +370,7 @@ sat:work: urn:uuid:b29707c1-de6e-4e76-a500-08d66d1ecb3b
 We have a record of ingress for the document
 
 ```bash
-cat en/.messy-source-sample.md.assets/content/ingress/ingress-2026-08-04T20-33-47Z.yml 
+cat ${SIDECAR_PATH}/content/ingress/ingress-2026-08-04T20-33-47Z.yml 
 ```
 
 Content example:
@@ -400,7 +458,7 @@ original_frontmatter: ''
 #### provenance
 
 ```bash
-cat en/.messy-source-sample.md.assets/content/provenance.yml 
+cat ${SIDECAR_PATH}/content/provenance.yml 
 ```
 
 Output example:
@@ -415,8 +473,6 @@ registry_file_date: null
 "The formatting was normalized to the house standard. A metadata record was catalogued, title, creator, date, language, rights, in a standard vocabulary. The document was given a stable identity that will never change, and a cryptographic fingerprint. And a license was attached. All of that happened at the door. No one will have to go back and do it later, because later never comes."
 
 Let that sit. This is the moment the value is obvious even to someone who will never touch a terminal.
-
-# AUTHOR STOPPED REVIEW HERE
 
 ## Beat three deepened, steer the metadata through the cascade
 
@@ -433,6 +489,21 @@ SAT resolves a document's metadata through ordered layers, shallow to deep, and 
 | 3 | Archive | the language archive's `dc.yml`, with its `language.yml` |
 | 4 | Content directories | any organizing directory's `dc.yml` below the archive |
 | 5 | The document | the document's own `content/dc.yml`, beside the file |
+
+#### Examples:
+
+```bash
+# SAT Instance
+nano demo-instance/.demo-instance.assets/sat/dc.yml
+# SAT Demo Collection
+demo-instance/.demo-instance.assets/collection/dc.yml
+# Demo Test Collection
+demo-instance/collections/test-collection/.test-collection.assets/collection/dc.yml
+# Demo Test English Archive
+demo-instance/collections/test-collection/en/.en.assets/archive/dc.yml
+# Ingress Demo
+demo-instance/en/my-directory/.my-directory.assets/content/dc.yml
+```
 
 Three field states travel through those layers, and this is worth saying out loud to the room:
 
@@ -579,6 +650,8 @@ Say this:
 
 "Same instance, two documents, two different licences, and nobody set the licence on either document. Where a document lives decides what it inherits. That is how you govern a whole set of related material by describing the set once, at the collection, instead of every file by hand."
 
+## BEGIN UNTESTED AND UNIMPLEMENTED TERRITORY
+
 ## Beat five, prove integrity, two minutes, second peak
 
 Ask the reconciler what it knows, then verify fingerprints:
@@ -656,6 +729,7 @@ The initialize, verify, and teardown commands are taken from the SAT Initializat
 
 | Version | Status | Notes |
 | --- | --- | --- |
+| 0.1.2 | Draft | Added additional information and cleaned up tests and added examples of where the cascade for metadata can be altered |
 | 0.1.1 | Draft | Captured real command outputs through the ingress beat; added the metadata-cascade section (inheritance, per-document override, and the `<calculated>` tripwire) and a section on placing content into a collection's nested language archive with the collection-tier contrast, verified live against a scratch 0.8.0 instance. |
 | 0.1.0 | Draft | First version. Fifteen-minute arc, beats, talking points, and reset for a mixed audience; commands sourced from tool code and the Initialization Guide, with the publish step flagged for live confirmation. |
 
