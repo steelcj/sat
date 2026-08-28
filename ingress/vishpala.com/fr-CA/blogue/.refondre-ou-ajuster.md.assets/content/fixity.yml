@@ -1,0 +1,20 @@
+# refondre-ou-ajuster.md/.refondre-ou-ajuster.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 6457c5114b4208abb48c6c0eaca85606d9e121db46b3da429e55ad7eca7ce492
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 214f86996b0d97c5ec49da09777b6b30b21beed357ca510d4d0ac5c0e994b116
+  size: 1602
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

@@ -1,0 +1,20 @@
+# terms.md/.terms.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 715b6eb99d9c4bd077e1b66e154b92b6bc88e629e05e02dba5ba2b5fbdb56f17
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: f7e3287dd22f0bb81330e51e3478f73194d1a45c5e3e9a860839f758853c1884
+  size: 1060
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

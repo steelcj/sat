@@ -1,0 +1,20 @@
+# seo-for-service-businesses.md/.seo-for-service-businesses.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: a6d8af060df3e1ba41e2b6899a42c89098f859182b8db237d9272a75ee8cc838
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 5121d6d5a5c496e7d780cad68298d54089087613dc16453042cb3336a5d22dcb
+  size: 1407
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

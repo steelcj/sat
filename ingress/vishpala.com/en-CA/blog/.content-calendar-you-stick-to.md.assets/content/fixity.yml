@@ -1,0 +1,20 @@
+# content-calendar-you-stick-to.md/.content-calendar-you-stick-to.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 44417794182c2e692d53d5b117716bfd861d44d813d37dbf9034e9c2249c9c8a
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 12d78f76a0df0e4117972d00a0cf0d5299c2fa507debb09a296299d9c84f62b3
+  size: 1168
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

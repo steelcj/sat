@@ -1,0 +1,41 @@
+sat_version: '0.1'
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0
+source: en-CA/blog/content-calendar-you-stick-to.md
+frontmatter_present: true
+origins:
+  dc:title: transcribed
+  dc:creator: supplied
+  dc:description: supplied
+  dc:date: transcribed
+  dc:publisher: supplied
+  dc:rights: supplied
+  dc:language: supplied
+  dc:language_bcp47: supplied
+  dc:type: supplied
+noted:
+  sat:work: urn:uuid:8c8ad3b7-f697-461a-a12c-951566213b79
+  unrecognized_keys:
+    category: social
+    excerpt: A simple, repeatable system that survives busy weeks and keeps your feed
+      consistent.
+    readtime: 4 min read
+    draft: false
+findings: []
+original_frontmatter: 'title: "How to build a content calendar you''ll actually stick
+  to"
+
+  category: "social"
+
+  date: 2026-04-09
+
+  excerpt: "A simple, repeatable system that survives busy weeks and keeps your feed
+  consistent."
+
+  readtime: "4 min read"
+
+  draft: false
+
+  "sat:work": "urn:uuid:8c8ad3b7-f697-461a-a12c-951566213b79"'

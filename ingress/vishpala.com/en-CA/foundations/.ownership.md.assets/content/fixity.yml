@@ -1,0 +1,20 @@
+# ownership.md/.ownership.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 25adb4b4dae75e3caba90c76b431d514118caf5aac69ce7f32e9ed56c15d05bd
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 3fcf0a5f68ce7671b500aff46848bb66128dfaddbce32090df306d5d3e897f18
+  size: 1569
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

@@ -1,0 +1,14 @@
+# ingress/.ingress.assets/sat/children.yml
+#
+#   To update, delete and rebuild using:
+#     sat children --rebuild
+#
+sat_version: '0.1'
+generated: '2026-08-11T21:53:33Z'
+generated_by:
+  command: collection init
+  version: 0.8.0
+children:
+  .: urn:uuid:0b55ff40-771f-474a-ae53-5de373a8d74e
+  vishpala.com: urn:uuid:c467c762-2e75-4927-bbe6-8c9a28c6fe5a
+  collections/test-collection: urn:uuid:e90d82d4-b3a9-484c-b2cc-f5f1fb14f434

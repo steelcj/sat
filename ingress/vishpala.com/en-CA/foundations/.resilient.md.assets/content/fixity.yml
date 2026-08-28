@@ -1,0 +1,20 @@
+# resilient.md/.resilient.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: e3c3a1d77e411c7d6104483ec2c8f8de1a32513995e086451c376339436da99c
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 3782bcb86dfbc5551c8fc2f70526d8be6ee55fe0ba487154153daef03010b87f
+  size: 1506
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

@@ -1,0 +1,40 @@
+sat_version: '0.1'
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0
+source: en-CA/blog/how-long-does-seo-take.md
+frontmatter_present: true
+origins:
+  dc:title: transcribed
+  dc:creator: supplied
+  dc:description: supplied
+  dc:date: transcribed
+  dc:publisher: supplied
+  dc:rights: supplied
+  dc:language: supplied
+  dc:language_bcp47: supplied
+  dc:type: supplied
+noted:
+  sat:work: urn:uuid:ac9894c1-3b02-436d-815b-aa3ffd13df7d
+  unrecognized_keys:
+    category: seo
+    excerpt: No hype, no vague "it depends". A realistic timeline for when organic
+      starts to pay off.
+    readtime: 5 min read
+    draft: false
+findings: []
+original_frontmatter: 'title: "How long does SEO take? Honest answers for founders"
+
+  category: "seo"
+
+  date: 2026-04-23
+
+  excerpt: "No hype, no vague \"it depends\". A realistic timeline for when organic
+  starts to pay off."
+
+  readtime: "5 min read"
+
+  draft: false
+
+  "sat:work": "urn:uuid:ac9894c1-3b02-436d-815b-aa3ffd13df7d"'

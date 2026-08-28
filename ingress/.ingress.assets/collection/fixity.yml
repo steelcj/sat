@@ -1,0 +1,16 @@
+# ingress/.ingress.assets/collection/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: d28d4ffe4e24c1bd87316bcd5f32da2cb3269a197d670d2fce22822e41835a45
+  provenance.yml:
+    algorithm: sha256
+    digest: 3bae8764222404d6d8ac058f02c323a2e74f88d3ac338a74eab4bd666eb98da9
+recorded: '2026-08-11T21:53:15Z'
+recorded_by:
+  command: sat init
+  version: 0.8.0

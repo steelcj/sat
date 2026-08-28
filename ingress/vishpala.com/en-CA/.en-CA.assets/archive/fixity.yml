@@ -1,0 +1,16 @@
+# en-CA/.en-CA.assets/archive/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: bd5d0289a6f0646b388edeec0fd70ad6161e70b0e230c903e49ec6c91b6c5a5e
+  provenance.yml:
+    algorithm: sha256
+    digest: d048b39092bf02796c92bacb67d090d4bbc6528fd8901c1560df606501db6d72
+recorded: '2026-08-11T21:53:33Z'
+recorded_by:
+  command: collection init
+  version: 0.8.0

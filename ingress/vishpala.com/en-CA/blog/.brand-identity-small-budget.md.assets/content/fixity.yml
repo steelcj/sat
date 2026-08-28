@@ -1,0 +1,20 @@
+# brand-identity-small-budget.md/.brand-identity-small-budget.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 77ab062e2d605afdf7a76ef60d664da496ef3f536d2f0298d28be43245190f74
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: d53e8dc5607ddc6383e92d595d190d52e80c1a0e625adf6b9fb7965a34d230bb
+  size: 1276
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

@@ -1,0 +1,40 @@
+sat_version: '0.1'
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0
+source: en-CA/blog/high-converting-homepage.md
+frontmatter_present: true
+origins:
+  dc:title: transcribed
+  dc:creator: supplied
+  dc:description: supplied
+  dc:date: transcribed
+  dc:publisher: supplied
+  dc:rights: supplied
+  dc:language: supplied
+  dc:language_bcp47: supplied
+  dc:type: supplied
+noted:
+  sat:work: urn:uuid:3efc4906-f64a-4a3f-8696-e41e6a34f593
+  unrecognized_keys:
+    category: websites
+    excerpt: Your homepage has one job. These seven elements are what help it actually
+      do it.
+    readtime: 7 min read
+    draft: false
+findings: []
+original_frontmatter: 'title: "The 7 things a high-converting homepage must have"
+
+  category: "websites"
+
+  date: 2026-05-14
+
+  excerpt: "Your homepage has one job. These seven elements are what help it actually
+  do it."
+
+  readtime: "7 min read"
+
+  draft: false
+
+  "sat:work": "urn:uuid:3efc4906-f64a-4a3f-8696-e41e6a34f593"'

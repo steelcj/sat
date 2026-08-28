@@ -1,0 +1,5 @@
+# Settings flow down from the instance automatically.
+# Only write something here if THIS tier needs a different answer.
+#
+sat:name: foundations
+dc:description: ''

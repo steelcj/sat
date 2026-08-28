@@ -1,0 +1,20 @@
+# social-media-strategy-mistake.md/.social-media-strategy-mistake.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: da641d4261d0d61b46ba96617b8da74d2fa6bee44d74e2f52c35b071ee5a2e3b
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 6c3206274900bc14fdc7bc2b9fc198323c9268e88a9688a2f58f187911a74863
+  size: 1435
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

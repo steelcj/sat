@@ -1,0 +1,161 @@
+# vishpala.com/.vishpala.com.assets/collection/work-index.yml
+#
+#   To update, delete and rebuild using:
+#     collection work index --rebuild
+#
+sat_version: '0.1'
+generated: '2026-08-11T21:55:54Z'
+generated_by:
+  command: content ingress
+  version: 0.8.0
+works:
+  urn:uuid:2bad60fc-91ff-4f6c-a001-af686afbcd97:
+    languages:
+      en-CA:
+        identifier: urn:uuid:9490ca66-cc39-4b8a-b60b-e372ac7a83d5
+        path: en-CA/blog/brand-identity-small-budget.md
+  urn:uuid:434287a2-c1b0-4f70-94ec-a4e691e047fb:
+    languages:
+      en-CA:
+        identifier: urn:uuid:be18b2b0-1655-4312-9daa-386070c3b16f
+        path: en-CA/blog/content-calendar-you-stick-to.md
+  urn:uuid:e8963d6f-c6d6-461e-aa1e-f6f87c935b15:
+    languages:
+      en-CA:
+        identifier: urn:uuid:1a4724a7-735d-47e1-b31b-761b35e79426
+        path: en-CA/blog/high-converting-homepage.md
+  urn:uuid:c01edee2-1594-46f9-861b-c8f673f1829e:
+    languages:
+      en-CA:
+        identifier: urn:uuid:08dd4bbd-69c4-4790-8f29-3515b1339ec9
+        path: en-CA/blog/how-long-does-seo-take.md
+  urn:uuid:7b7666f7-e206-46fc-b76d-f30e1a415dd9:
+    languages:
+      en-CA:
+        identifier: urn:uuid:014ef7ed-f05c-4fdf-89c4-0059ca3aab38
+        path: en-CA/blog/is-your-marketing-working.md
+  urn:uuid:8050aa02-08a8-4154-9501-0f9a3162ea92:
+    languages:
+      en-CA:
+        identifier: urn:uuid:80e10d4f-626a-402f-91da-e42bafeeca69
+        path: en-CA/blog/rebrand-or-refine.md
+  urn:uuid:9be52e7b-68be-41dc-b3e6-0f2065be388c:
+    languages:
+      en-CA:
+        identifier: urn:uuid:aeb18d96-674a-417b-9fe2-f87b88a3e1e3
+        path: en-CA/blog/seo-for-service-businesses.md
+  urn:uuid:f6d0f31b-aa19-43ee-8627-75758daa65e8:
+    languages:
+      en-CA:
+        identifier: urn:uuid:8351bacd-abad-4187-83be-f01d3689e038
+        path: en-CA/blog/social-media-strategy-mistake.md
+  urn:uuid:7a70285c-6ee3-4bd4-8f51-08009cc2f9e2:
+    languages:
+      en-CA:
+        identifier: urn:uuid:52bba0ef-5027-4f4c-9fd9-75e2d50e8dd5
+        path: en-CA/blog/website-copy-that-sells.md
+  urn:uuid:8f555427-8c1a-4fc8-a595-9883e3dd121d:
+    languages:
+      en-CA:
+        identifier: urn:uuid:e73f4692-f49b-4147-9d01-f3c5952c1497
+        path: en-CA/blog/website-views-but-no-leads.md
+  urn:uuid:aec48cd9-3af1-44ad-a381-0695ba95689d:
+    languages:
+      en-CA:
+        identifier: urn:uuid:bf6e419e-dd70-487e-9050-43071235adff
+        path: en-CA/foundations/accessibility.md
+  urn:uuid:ba3a7f61-35a9-4cf4-a8e7-4b582e1e6360:
+    languages:
+      en-CA:
+        identifier: urn:uuid:0d57077d-86ab-4a20-b496-01ed87d179ac
+        path: en-CA/foundations/energy.md
+  urn:uuid:0cbf643d-f01f-41d4-b20b-ee40575d964a:
+    languages:
+      en-CA:
+        identifier: urn:uuid:ecc719a2-9162-40da-bbab-e03754846fa0
+        path: en-CA/foundations/index.md
+  urn:uuid:4a1f1448-97b4-4709-ae42-6f5965553c77:
+    languages:
+      en-CA:
+        identifier: urn:uuid:796abbd9-5eb0-43f3-8859-dbaebba72a3a
+        path: en-CA/foundations/multilingual.md
+  urn:uuid:87eb813e-27ce-4c3e-bb68-d892a6176fec:
+    languages:
+      en-CA:
+        identifier: urn:uuid:376c7f51-b9a5-4f84-ad19-8f666783caab
+        path: en-CA/foundations/ownership.md
+  urn:uuid:06744057-63a4-4e76-a32c-8e65fbd59c42:
+    languages:
+      en-CA:
+        identifier: urn:uuid:4db92389-fa55-46b3-982b-8d34f415e43a
+        path: en-CA/foundations/performance.md
+  urn:uuid:bad98c0c-c9f0-496f-81db-164590adac13:
+    languages:
+      en-CA:
+        identifier: urn:uuid:8d91bb52-4d39-490f-80c2-b323de5a8921
+        path: en-CA/foundations/portable-content.md
+  urn:uuid:73a56dd4-2584-4abb-a3fe-28d34f496e54:
+    languages:
+      en-CA:
+        identifier: urn:uuid:9b4204b9-1fa6-4872-9f50-abe1c1992e5a
+        path: en-CA/foundations/resilient.md
+  urn:uuid:5aa31827-9f1c-4182-8e54-3d3e72985627:
+    languages:
+      en-CA:
+        identifier: urn:uuid:cc680fdc-2341-4092-8468-b34cbf310f4c
+        path: en-CA/foundations/seo.md
+  urn:uuid:e7241080-4249-4431-a415-4f4b807b55d1:
+    languages:
+      en-CA:
+        identifier: urn:uuid:78472a1f-6770-47ea-92c7-836e52450488
+        path: en-CA/legal/accessibility.md
+  urn:uuid:093f90f5-b477-4752-b751-88fd254dd024:
+    languages:
+      en-CA:
+        identifier: urn:uuid:8bdaef61-961b-4f07-b136-83eddc7a30f5
+        path: en-CA/legal/cookies.md
+  urn:uuid:a90edafb-70fa-4d3c-af40-a976309d26d5:
+    languages:
+      en-CA:
+        identifier: urn:uuid:2b8a54db-d07b-4c5c-8b47-9fe89802abf7
+        path: en-CA/legal/index.md
+  urn:uuid:f5ebc2b2-9ac8-414a-b1d7-1f6987d54b20:
+    languages:
+      en-CA:
+        identifier: urn:uuid:c94ec265-a74d-479e-b21b-8e6524852c6a
+        path: en-CA/legal/privacy.md
+  urn:uuid:8e591d00-6f6d-45f5-84a8-8594e1e9aacb:
+    languages:
+      en-CA:
+        identifier: urn:uuid:86e5886f-3e10-4fdd-b416-8e2c19bf4429
+        path: en-CA/legal/terms.md
+  urn:uuid:1fa306eb-5e4d-4747-a68a-d771c71d6981:
+    languages:
+      fr-CA:
+        identifier: urn:uuid:68c50334-19d0-4210-a5db-38278a568667
+        path: fr-CA/blogue/refondre-ou-ajuster.md
+  urn:uuid:fa1b3982-0959-48fe-a1e1-217a0c9d9d7f:
+    languages:
+      fr-CA:
+        identifier: urn:uuid:f6d4edbe-6ce2-4a7b-8efb-61a59bd9b0ba
+        path: fr-CA/mentions-legales/accessibilite.md
+  urn:uuid:2617745c-9d66-4143-bd5c-37b2ba4e36ae:
+    languages:
+      fr-CA:
+        identifier: urn:uuid:bcd7f32b-21e3-4153-ba2d-913377e58293
+        path: fr-CA/mentions-legales/conditions.md
+  urn:uuid:c934cc4d-ee24-4fbd-a498-7fdd9e4e3a82:
+    languages:
+      fr-CA:
+        identifier: urn:uuid:1e4e475a-0bba-47b8-b12e-8d8cab1178aa
+        path: fr-CA/mentions-legales/confidentialite.md
+  urn:uuid:e0f8efa0-3843-456b-a34f-1b5c6125879b:
+    languages:
+      fr-CA:
+        identifier: urn:uuid:bb421879-c226-4103-b93a-2439a42990bc
+        path: fr-CA/mentions-legales/cookies.md
+  urn:uuid:0e1f6943-5f0b-48ff-b01a-23df165a0053:
+    languages:
+      fr-CA:
+        identifier: urn:uuid:c218f46a-979b-4749-ac9d-c712bc0fafbe
+        path: fr-CA/mentions-legales/index.md

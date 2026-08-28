@@ -1,0 +1,13 @@
+# vishpala.com/.vishpala.com.assets/collection/children.yml
+#
+#   To update, delete and rebuild using:
+#     collection children --rebuild
+#
+sat_version: '0.1'
+generated: '2026-08-11T21:53:33Z'
+generated_by:
+  command: collection init
+  version: 0.8.0
+children:
+  en-CA: urn:uuid:1499ed68-e391-4430-999b-22f9af5fd60f
+  fr-CA: urn:uuid:a2e32e21-4ee5-470a-8bee-95646e01ba76

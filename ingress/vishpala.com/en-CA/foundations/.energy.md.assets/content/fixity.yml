@@ -1,0 +1,20 @@
+# energy.md/.energy.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: c2d5dd981fcac09b0eb2fd6574be0f0f351d6c3f3ca2985c2d0445fe0e1a8b0b
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: a0e4d87da963e871d5c612887764babb7770c0a3cad5bb6040b2e0b4ec020f90
+  size: 1437
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

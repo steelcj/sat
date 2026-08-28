@@ -1,0 +1,8 @@
+# Settings flow down from the instance automatically.
+# Only write something here if THIS tier needs a different answer.
+#
+sat:name: en-CA
+dc:title: vishpala.com (en-CA)
+dc:date: '2026-08-11'
+dc:description: ''
+dc:type: Collection

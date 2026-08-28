@@ -1,0 +1,29 @@
+sat_version: '0.1'
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0
+source: fr-CA/mentions-legales/confidentialite.md
+frontmatter_present: true
+origins:
+  dc:title: transcribed
+  dc:creator: supplied
+  dc:description: transcribed
+  dc:date: supplied
+  dc:publisher: supplied
+  dc:rights: supplied
+  dc:language: supplied
+  dc:language_bcp47: supplied
+  dc:type: supplied
+noted:
+  sat:work: urn:uuid:1e4b8c72-9f35-42a7-b6d1-8c3e5a0f21b4
+  date_fallback:
+    value: '2026-08-11'
+    source: ingress-time-utc
+    reason: no transcribed dc:date, no --date, st_birthtime unavailable
+findings: []
+original_frontmatter: 'title: "Politique de confidentialité"
+
+  description: "Comment ce site recueille, utilise et protège vos renseignements."
+
+  sat:work: "urn:uuid:1e4b8c72-9f35-42a7-b6d1-8c3e5a0f21b4"'

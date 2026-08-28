@@ -1,0 +1,20 @@
+# website-views-but-no-leads.md/.website-views-but-no-leads.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 261817e0cc3d69b0b68934c3abadc1f4b2bf9f0857dd1357435c724c29f93b6d
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: b74f7ebf78f67b6af941b2d5c3155a5e3af21ae6591e7d967fb4aa9712cc5674
+  size: 2310
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

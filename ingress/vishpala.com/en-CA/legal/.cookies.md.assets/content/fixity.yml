@@ -1,0 +1,20 @@
+# cookies.md/.cookies.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: cc62d7e4704d9202eaa38fe24795f5b2c1bcdb4d6b3598aa938b3b0fc5a21593
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 341e389c7819be3f8f403cb20b70206be49913f265ad3d89eadf2c64bea25109
+  size: 812
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

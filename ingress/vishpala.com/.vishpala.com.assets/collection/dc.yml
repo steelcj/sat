@@ -1,0 +1,6 @@
+# Settings flow down from the instance automatically.
+# Only write something here if THIS tier needs a different answer.
+#
+sat:name: vishpala.com
+dc:description: ''
+dc:type: Collection

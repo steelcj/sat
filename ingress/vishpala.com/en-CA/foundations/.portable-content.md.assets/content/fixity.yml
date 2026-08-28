@@ -1,0 +1,20 @@
+# portable-content.md/.portable-content.md.assets/content/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 70c63298733585b0331f4a323f773306b370c0866f2400eada4daec84b1b7e0f
+  provenance.yml:
+    algorithm: sha256
+    digest: 8160a7ed7faa03aad98c2431181c823bb6a1315b83e18a7eb161d6b45df64157
+content:
+  algorithm: sha256
+  digest: 284429f470ddc0007ca505dadb5b14e1b5063f49e82d61a428a9055f96f91900
+  size: 1557
+recorded: '2026-08-11T21:55:54Z'
+recorded_by:
+  command: content ingress
+  version: 0.8.0

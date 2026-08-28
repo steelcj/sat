@@ -1,0 +1,16 @@
+# vishpala.com/.vishpala.com.assets/collection/fixity.yml
+#
+#   Written at creation, updated by deliberate operations.
+#   Recorded digests; a mismatch is a fixity finding (ADR-027).
+#
+records:
+  identity.yml:
+    algorithm: sha256
+    digest: 3a394e4efc4e12330ff64884719ed73174fabae61879bdfd46a1355181c348de
+  provenance.yml:
+    algorithm: sha256
+    digest: a0c897a7e5832759ed1e1fa9768a9e0c2a38468fe0e7c1a52d3fe504e8ad1db9
+recorded: '2026-08-11T21:53:33Z'
+recorded_by:
+  command: collection init
+  version: 0.8.0
