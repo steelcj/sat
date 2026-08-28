@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-08-28
+
 * Added metadata story
+* Added ingress example
+* Added sessions documentation
 
 ## [0.8.0] - 2026-08-04
 
